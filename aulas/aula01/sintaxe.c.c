@@ -1,7 +1,7 @@
 #include <stdio.h> // Inclui a biblioteca padrão de entrada e saída
 
 int main() { // Função principal do programa
-    printf("Oi Mundo !\n");
+    printf("Calculadora !\n");
 
     //seu código aqui
 
