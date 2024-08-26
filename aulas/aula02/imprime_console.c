@@ -4,7 +4,7 @@ int main() {
 //imprime um texto na tela
 printf("Um texto entre aspas duplas\n");
   
-//imprime um numero inteiro na tela
+//imprime um numero inteiro 
 printf("%i\n", 10);
 printf("%i %i\n",50,100);
 printf("%5i\n",1);
