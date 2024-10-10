@@ -17,7 +17,7 @@
 //     }
 
 // if aninhado
-//     int idade = 0;
+//    int idade = 0;
 //         printf("Entre com a sua idade: ");
 //         int deu_certo = scanf("%i", &idade);
 
@@ -32,10 +32,9 @@
 
 
 //     }
-
-// float media = 0.0f;
-// printf("Entre com a media final:");
-// deu_certo = scanf("%f", &media);
+ float media = 0.0f;
+ printf("Entre com a media final:");
+ int deu_certo = scanf("%f", &media);
 
 // if encadeado
 if (media >= 9.0f && media <= 10.0f){
@@ -44,7 +43,7 @@ if (media >= 9.0f && media <= 10.0f){
     printf("A mencao eh MS\n");
 }else if (media >= 5.0f && media <= 6.9f){
     printf("A mencao eh MM\n");
-}else if (media>= 3.0f && medai <= 4.9f){
+}else if (media>= 3.0f && media <= 4.9f){
     printf("A mencao eh MI\n");
 }else if (media >= 0.1f && media <= 2.9f){
     printf("A mencao eh II\n");
