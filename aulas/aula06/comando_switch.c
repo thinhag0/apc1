@@ -5,7 +5,7 @@ int main() {
 int nota = 0;
 printf("Entre com uma nota de 1 a 5: ");
 scanf("%i", &nota);
-// if (not a == 1){
+// if (nota == 1){
 //     printf("Voce ganhou 1 estrela!\n");
 // } else if (nota == 2){
 //     printf("Voce ganhou 2 estrelas!\n");
