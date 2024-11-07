@@ -7,7 +7,6 @@
 #define MAX_PALAVRAS 10
 #define MAX_HISTORICO 20
 
-// Lista de palavras para adivinhar
 const char *palavras[MAX_PALAVRAS] = {
     "computador",
     "engenharia",
@@ -17,18 +16,23 @@ const char *palavras[MAX_PALAVRAS] = {
     "asmodeus"
 };
 
-// Estrutura para armazenar o histórico de partidas
 typedef struct {
     char palavra[50];
     int venceu;
     int tentativasRestantes;
 } Historico;
 
-// Histórico de jogos
 Historico historico[MAX_HISTORICO];
 int numJogos = 0;
 
-// Função para exibir a palavra com letras descobertas
+void limparTela() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
 void mostrarPalavra(const char *palavra, const int *letrasDescobertas) {
     int len = strlen(palavra);
     for (int i = 0; i < len; i++) {
@@ -41,18 +45,18 @@ void mostrarPalavra(const char *palavra, const int *letrasDescobertas) {
     printf("\n");
 }
 
-// Função para exibir o menu
 void exibirMenu() {
+    limparTela();
     printf("\n====== MENU ======\n");
     printf("1. Iniciar Jogo\n");
-    printf("2. Ver Histórico\n");
+    printf("2. Ver Historico\n");
     printf("3. Sair\n");
     printf("==================\n");
     printf("Escolha uma opcao: ");
 }
 
-// Função para exibir o histórico de jogos
 void exibirHistorico() {
+    limparTela();
     if (numJogos == 0) {
         printf("Nenhum jogo foi registrado no historico ainda.\n");
         return;
@@ -69,14 +73,13 @@ void exibirHistorico() {
     printf("===========================\n\n");
 }
 
-// Função principal do jogo
 void iniciarJogo() {
+    limparTela();
     srand(time(NULL));
     int tentativasRestantes = MAX_TENTATIVAS;
     int letrasDescobertas[50] = {0};
     char letra;
 
-    // Escolhe uma palavra aleatória
     int indice = rand() % MAX_PALAVRAS;
     const char *palavra = palavras[indice];
     int len = strlen(palavra);
@@ -85,7 +88,6 @@ void iniciarJogo() {
     printf("Tente adivinhar a palavra letra por letra.\n");
     printf("Voce tem %d tentativas.\n\n", tentativasRestantes);
 
-    // Loop do jogo
     while (tentativasRestantes > 0 && letrasFaltando > 0) {
         mostrarPalavra(palavra, letrasDescobertas);
 
@@ -108,13 +110,12 @@ void iniciarJogo() {
             printf("Boa! A letra '%c' esta na palavra.\n", letra);
         } else {
             tentativasRestantes--;
-            printf("Que pena! A letra '%c' não esta na palavra. Tentativas restantes: %d\n", letra, tentativasRestantes);
+            printf("Que pena! A letra '%c' nao esta na palavra. Tentativas restantes: %d\n", letra, tentativasRestantes);
         }
 
         printf("\n");
     }
 
-    // Armazenar o resultado no histórico
     if (numJogos < MAX_HISTORICO) {
         strcpy(historico[numJogos].palavra, palavra);
         historico[numJogos].venceu = (letrasFaltando == 0);
@@ -122,15 +123,13 @@ void iniciarJogo() {
         numJogos++;
     }
 
-    // Resultado final
     if (letrasFaltando == 0) {
-        printf("Parabens! Você adivinhou a palavra: %s\n", palavra);
+        printf("Parabens! Voce adivinhou a palavra: %s\n", palavra);
     } else {
         printf("Suas tentativas acabaram! A palavra correta era: %s\n", palavra);
     }
 }
 
-// Função principal com o menu
 int main() {
     int opcao;
 
@@ -138,7 +137,6 @@ int main() {
         exibirMenu();
         if (scanf("%d", &opcao) != 1) {
             printf("Erro na leitura da opcao. Tente novamente.\n");
-            // Limpa a entrada padrão para evitar loop infinito
             while (getchar() != '\n');
             continue;
         }
@@ -151,10 +149,10 @@ int main() {
                 exibirHistorico();
                 break;
             case 3:
-                printf("Valeu a esperiencia. Fe pra vcs!\n");
+                printf("Valeu a experiencia. Ate mais!\n");
                 break;
             default:
-                printf("So tem 3 opcoes. animal.\n");
+                printf("Opcao invalida.\n");
         }
 
     } while (opcao != 3);
