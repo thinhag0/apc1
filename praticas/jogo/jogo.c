@@ -6,6 +6,7 @@
 #define MAX_TENTATIVAS 6
 #define MAX_PALAVRAS 5
 
+int main() {
 // Lista de palavras para adivinhar
 const char *palavras[MAX_PALAVRAS] = {
     "computador",
@@ -29,7 +30,7 @@ void mostrarPalavra(const char *palavra, const int *letrasDescobertas) {
 }
 
 // Função principal do jogo
-int main() {
+
     srand(time(NULL));
     int tentativasRestantes = MAX_TENTATIVAS;
     int letrasDescobertas[50] = {0};
