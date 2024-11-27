@@ -9,7 +9,7 @@
 #define TAM_NOME 50
 
 int main() {
-    // Lista de palavras para o jogo
+    // lista de palavras 
     const char *palavras[MAX_PALAVRAS] = {
         "computador",
         "engenharia",
@@ -18,7 +18,7 @@ int main() {
         "violao"
     };
 
-    // Estrutura para armazenar o histórico de jogos
+    // armazenar o historico de jogos
     typedef struct {
         char nomeJogador[TAM_NOME];
         char palavra[50];
@@ -26,16 +26,16 @@ int main() {
         int tentativasRestantes;
     } Historico;
 
-    // Histórico de jogos
+    // Historico de jogos
     Historico historico[MAX_HISTORICO];
     int numJogos = 0;
 
-    // Variáveis gerais
+    // Variaveis gerais
     int opcao, tentativasRestantes, letrasDescobertas[50], letrasFaltando;
     char letra, nomeJogador[TAM_NOME];
     const char *palavra;
 
-    // Inicialização
+    // Inicializacao
     srand(time(NULL));
 
     // Solicitar o nome do jogador
@@ -43,16 +43,16 @@ int main() {
     scanf("%s", nomeJogador);
 
     do {
-        // Exibição do menu principal
+        // Exibicao do menu principal
         printf("\n====== MENU ======\n");
         printf("1. Iniciar Jogo\n");
-        printf("2. Ver Histórico\n");
+        printf("2. Ver Historico\n");
         printf("3. Sair\n");
         printf("==================\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
         
         if (scanf("%d", &opcao) != 1) {
-            printf("Entrada inválida. Tente novamente.\n");
+            printf("Entrada invalida. Tente novamente.\n");
             while (getchar() != '\n'); // Limpa o buffer
             continue;
         }
@@ -66,9 +66,9 @@ int main() {
                 // Selecionar palavra aleatória
                 palavra = palavras[rand() % MAX_PALAVRAS];
                 letrasFaltando = strlen(palavra);
-
+                
                 printf("\nTente adivinhar a palavra letra por letra.\n");
-                printf("Você tem %d tentativas.\n\n", tentativasRestantes);
+                printf("Voce tem %d tentativas.\n\n", tentativasRestantes);
 
                 // Loop do jogo
                 while (tentativasRestantes > 0 && letrasFaltando > 0) {
@@ -81,7 +81,7 @@ int main() {
                     // Solicitar uma letra
                     printf("Digite uma letra: ");
                     if (scanf(" %c", &letra) != 1) {
-                        printf("Entrada inválida. Tente novamente.\n");
+                        printf("Entrada invalida. Tente novamente.\n");
                         while (getchar() != '\n'); // Limpa o buffer
                         continue;
                     }
@@ -97,10 +97,11 @@ int main() {
                     }
 
                     if (acerto) {
-                        printf("Boa! A letra '%c' está na palavra.\n", letra);
+                        
+                        printf("Boa! A letra '%c' esta na palavra.\n", letra);
                     } else {
                         tentativasRestantes--;
-                        printf("Que pena! A letra '%c' não está na palavra. Tentativas restantes: %d\n", letra, tentativasRestantes);
+                        printf("Que pena! A letra '%c' nao esta na palavra. Tentativas restantes: %d\n", letra, tentativasRestantes);
                     }
                     printf("\n");
                 }
@@ -116,24 +117,25 @@ int main() {
                 }
 
                 if (letrasFaltando == 0) {
-                    printf("Parabéns, %s! Você adivinhou a palavra: %s\n", nomeJogador, palavra);
+                    printf("Parabens, %s! Voce adivinhou a palavra: %s\n", nomeJogador, palavra);
                 } else {
                     printf("Suas tentativas acabaram, %s! A palavra correta era: %s\n", nomeJogador, palavra);
                 }
                 break;
             }
             case 2: {
-                // Exibir histórico
+                // Exibir historico
+               
                 if (numJogos == 0) {
-                    printf("Nenhum jogo foi registrado no histórico ainda.\n");
+                    printf("Nenhum jogo foi registrado no historico ainda.\n");
                 } else {
-                    printf("\n=== Histórico de Jogos ===\n");
+                    printf("\n=== Historico de Jogos ===\n");
                     for (int i = 0; i < numJogos; i++) {
                         printf("Jogo %d: Jogador: %s - Palavra: %s - %s - Tentativas restantes: %d\n",
                                i + 1,
                                historico[i].nomeJogador,
                                historico[i].palavra,
-                               historico[i].venceu ? "Vitória" : "Derrota",
+                               historico[i].venceu ? "Vitoria" : "Derrota",
                                historico[i].tentativasRestantes);
                     }
                     printf("===========================\n\n");
@@ -141,10 +143,10 @@ int main() {
                 break;
             }
             case 3:
-                printf("Até mais, %s!\n", nomeJogador);
+                printf("Ate mais, %s!\n", nomeJogador);
                 break;
             default:
-                printf("Opção inválida. Tente novamente.\n");
+                printf("Opcao invalida. Tente novamente.\n");
         }
     } while (opcao != 3);
 
